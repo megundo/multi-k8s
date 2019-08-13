@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before install:
+  - docker build -t melihx/react-test -f ./client/Dockerfile.dev ./client
+script:
+  - docker run -e CI=true melihx/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t melihx/multi-client ./client
+  - docker build -t melihx/multi-nginx ./nginx
+  - docker build -t melihx/multi-server ./server
+  - docker build -t melihx/multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push melihx/multi-client
+  - docker push melihx/multi-server
+  - docker push melihx/multi-nginx
+  - docker push melihx/multi-worker
