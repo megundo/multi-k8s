@@ -18,3 +18,19 @@ after_success:
   - docker push melihx/multi-nginx
   - docker push melihx/multi-server
   - docker push melihx/multi-worker
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucker_name: elasticbeanstalk-eu-central-1-514388363370
+  bucker_path: docker-multi
+  on:
+    branch: master
+
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
