@@ -17,5 +17,4 @@ after_success:
   - docker push melihx/multi-client
   - docker push melihx/multi-nginx
   - docker push melihx/multi-server
-
   - docker push melihx/multi-worker
