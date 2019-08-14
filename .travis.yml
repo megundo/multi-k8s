@@ -25,7 +25,7 @@ deploy:
   region: eu-central-1
   app: multi-docker
   env: MultiDocker-env
-  bucker_name: elasticbeanstalk-eu-central-1-514388363370
+  bucker_name: "elasticbeanstalk-eu-central-1-514388363370"
   bucker_path: docker-multi
   on:
     branch: master
